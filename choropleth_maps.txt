@@ -1,0 +1,35 @@
+1. Choropleth Maps
+	import chart_studio.plotly as py
+	import plotly.graph_objs as go
+	from plotly.offline import download_plotlyjs,
+					init_notebook_mode,
+					plot,
+					iplot
+	
+	init_notebook_mode(connected=True)
+	
+	# US Map
+	data = dict(type = 'choropleth', # Model graphic
+           locations = ['AZ','CA','NY'], # State in US
+           locationmode = 'USA-states', # Position in the world
+           colorscale = 'Greens', # color gradation
+           text = ['Arizona','Cali','New York'], # text 
+           z = [1.0,2.0,3.0], # Value
+           colorbar = {'title':'Colorbar Title Goes Here'}) # Title color bar
+
+	layout = dict(geo={'scope':'usa'})
+	choromap = go.Figure(data=[data],layout=layout)
+	iplot(choromap)
+
+	# International Map
+	data = dict(type='choropleth', # Model graphic
+           locations = df['CODE'], # Nation in the world
+           z = df['GDP (BILLIONS)'], # Value
+           text = df['COUNTRY'], # text
+           colorbar = {'title':'GDP in Billions USD'}) # Title of color bar
+	
+	layout = dict(title = '2014 Global GDP',
+             geo = dict(showframe=False,
+                       projection = {'type':'stereographic'}))
+	choromap3 = go.Figure(data=[data],layout=layout)
+	iplot(choromap3)
