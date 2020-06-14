@@ -1,0 +1,29 @@
+Plotly & Cufflinks
+	from plotly import __version__
+	from plotly.offline import download_plotlyjs, 
+					init_notebook_mode, 
+					plot, 
+					iplot
+
+	print(__version__) # checking version
+
+	import cufflinks as cf
+
+	init_notebook_mode(connected=True) # connect javascript to notebook
+	cf.go_offline() # for offline use
+
+	df.iplot(kind='scatter',x='A',y='B',mode='markers',size=10)
+		 kind='bar'
+		 kind='spread'
+		 kind='hist'
+		 kind='bubble'
+	df.count().iplot()
+	df.sum().iplot()
+
+	df.iplot(kind='box')
+	
+	# 3D surface
+	df3 = pd.DataFrame({'x':[1,2,3,4,5],'y':[10,20,30,20,10],'z':[5,4,3,2,1]})
+	df3.iplot(kind='surface',colorscale='rdylbu')
+	
+	df.scatter_matrix()
